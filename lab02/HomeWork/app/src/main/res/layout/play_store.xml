@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="488dp"
+        android:layout_height="655dp"
+        android:background="#eeeeee"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="-48dp"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+
+    <TextView
+        android:id="@+id/btnBook"
+        android:layout_width="168dp"
+        android:layout_height="40dp"
+        android:background="#429bdf"
+        android:gravity="center_vertical"
+        android:text="            BOOKS"
+        android:textColor="@android:color/white"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/btnGame"
+        app:layout_constraintLeft_toRightOf="@+id/btnMovie"
+        android:layout_marginLeft="8dp" />
+
+    <TextView
+        android:id="@+id/btnMovie"
+        android:layout_width="168dp"
+        android:layout_height="40dp"
+        android:background="#db4c45"
+        android:gravity="center_vertical"
+        android:text="            MOVIES"
+        android:textColor="@android:color/white"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/btnApp"
+        app:layout_constraintRight_toLeftOf="@+id/iconBook"
+        android:layout_marginRight="8dp" />
+
+    <TextView
+        android:id="@+id/btnApp"
+        android:layout_width="168dp"
+        android:layout_height="40dp"
+        android:background="#759d47"
+        android:gravity="center_vertical"
+        android:text="            APPS"
+        android:textColor="@android:color/white"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintRight_toLeftOf="@+id/iconGame"
+        android:layout_marginRight="8dp" />
+
+    <TextView
+        android:id="@+id/btnGame"
+        android:layout_width="168dp"
+        android:layout_height="40dp"
+        android:background="#759d47"
+        android:gravity="center_vertical"
+        android:text="            GAMES"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/btnApp"
+        android:layout_marginLeft="8dp" />
+
+    <ImageView
+        android:id="@+id/iconApp"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        app:srcCompat="@drawable/iconapp"
+        app:layout_constraintTop_toTopOf="@+id/btnApp"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/btnApp" />
+
+    <ImageView
+        android:id="@+id/iconGame"
+        android:layout_width="41dp"
+        android:layout_height="40dp"
+        app:srcCompat="@drawable/icongame"
+        app:layout_constraintTop_toTopOf="@+id/btnGame"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/btnGame" />
+
+    <TextView
+        android:id="@+id/subRacingTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Beat the Records!"
+        android:textSize="16dp"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/RacingHead"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/RacingHead" />
+
+    <TextView
+        android:id="@+id/subNewTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New recommendation every week!"
+        android:textSize="16dp"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/NewHead"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/NewHead" />
+
+    <ImageView
+        android:id="@+id/iconBook"
+        android:layout_width="35dp"
+        android:layout_height="40dp"
+        app:srcCompat="@drawable/iconbook"
+        app:layout_constraintTop_toTopOf="@+id/btnBook"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/btnBook" />
+
+    <ImageView
+        android:id="@+id/iconMovie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/iconmovie"
+        app:layout_constraintTop_toTopOf="@+id/btnMovie"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="2dp"
+        app:layout_constraintLeft_toLeftOf="@+id/btnMovie" />
+
+    <TextView
+        android:id="@+id/RacingHead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Racing Games"
+        android:textColor="#313131"
+        android:textSize="20dp"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/CSRdiaplay"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/CSRdiaplay" />
+
+    <TextView
+        android:id="@+id/NewHead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New + Updated Games"
+        android:textColor="#313131"
+        android:textSize="20dp"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/subRacingTopic"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/RacingBG" />
+
+    <Button
+        android:id="@+id/btnMoreNew"
+        android:layout_width="62dp"
+        android:layout_height="31dp"
+        android:background="#769e48"
+        android:text="More"
+        android:textColor="@android:color/white"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="@+id/btnMoreRacing"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/RacingBG" />
+
+    <Button
+        android:id="@+id/btnMoreRacing"
+        android:layout_width="62dp"
+        android:layout_height="31dp"
+        android:background="#769e48"
+        android:text="More"
+        android:textColor="@android:color/white"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="@+id/RacingBG"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/RacingBG" />
+
+    <ImageView
+        android:id="@+id/RacingBG"
+        android:layout_width="339dp"
+        android:layout_height="161dp"
+        android:background="#ffffff"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="75dp"
+        app:layout_constraintTop_toBottomOf="@+id/btnMovie"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageView
+        android:id="@+id/SpellfallBG"
+        android:layout_width="112dp"
+        android:layout_height="165dp"
+
+        android:background="#ffffff"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/subNewTopic"
+        app:layout_constraintRight_toLeftOf="@+id/imageView15"
+        android:layout_marginRight="8dp" />
+
+    <ImageView
+        android:id="@+id/JumpyBG"
+        android:layout_width="112dp"
+        android:layout_height="165dp"
+        android:background="#ffffff"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/subNewTopic"
+        app:layout_constraintLeft_toRightOf="@+id/SpellfallBG"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintRight_toLeftOf="@+id/UnoBG"
+        android:layout_marginRight="8dp" />
+
+    <ImageView
+        android:id="@+id/UnoBG"
+        android:layout_width="112dp"
+        android:layout_height="165dp"
+        android:background="#ffffff"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/subNewTopic"
+        app:layout_constraintLeft_toRightOf="@+id/imageView15"
+        android:layout_marginLeft="8dp" />
+
+    <TextView
+        android:id="@+id/CSR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CSR Racing"
+        android:textColor="#515151"
+        android:textSize="18dp"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/stars"
+        app:layout_constraintTop_toTopOf="@+id/RacingBG"
+        android:layout_marginTop="8dp" />
+
+    <ImageView
+        android:id="@+id/CSRdiaplay"
+        android:layout_width="135dp"
+        android:layout_height="160dp"
+        app:srcCompat="@drawable/display1"
+        app:layout_constraintTop_toTopOf="@+id/RacingBG"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/RacingBG" />
+
+    <TextView
+        android:id="@+id/Price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FREE"
+        android:textColor="#769e48"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageView20"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="@+id/RacingBG" />
+
+    <TextView
+        android:id="@+id/descCSR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="      The best-selling drag\nrecing series - over 100\nmillion downloads"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/stars"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/stars" />
+
+    <TextView
+        android:id="@+id/Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="randy adams"
+        android:textScaleX="0.8"
+        android:textSize="12dp"
+        android:textStyle="italic"
+        app:layout_constraintTop_toTopOf="@+id/rate"
+        android:layout_marginTop="0dp"
+        app:layout_constraintRight_toLeftOf="@+id/rate"
+        android:layout_marginRight="0dp"
+        app:layout_constraintLeft_toRightOf="@+id/Display"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="0.333" />
+
+    <TextView
+        android:id="@+id/rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5 stars"
+        android:textScaleX="0.8"
+        android:textSize="12dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="@+id/descCSR"
+        app:layout_constraintBottom_toBottomOf="@+id/RacingBG"
+        android:layout_marginBottom="16dp" />
+
+    <ImageView
+        android:id="@+id/stars"
+        android:layout_width="84dp"
+        android:layout_height="30dp"
+        app:srcCompat="@drawable/star"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageView20"
+        app:layout_constraintLeft_toRightOf="@+id/CSRdiaplay"
+        android:layout_marginLeft="16dp" />
+
+    <ImageView
+        android:id="@+id/Display"
+        android:layout_width="47dp"
+        android:layout_height="46dp"
+        app:srcCompat="@drawable/profiledisplay"
+        app:layout_constraintBottom_toBottomOf="@+id/CSRdiaplay"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/descCSR" />
+
+    <ImageView
+        android:id="@+id/SpellfallMenu"
+        android:layout_width="61dp"
+        android:layout_height="21dp"
+        app:srcCompat="@drawable/menu_dot"
+        app:layout_constraintTop_toTopOf="@+id/textView12"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="@+id/imageView16" />
+
+    <ImageView
+        android:id="@+id/JumpyMenu"
+        android:layout_width="61dp"
+        android:layout_height="21dp"
+        app:srcCompat="@drawable/menu_dot"
+        app:layout_constraintTop_toTopOf="@+id/JumpyTopic"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="@+id/imageView15" />
+
+    <ImageView
+        android:id="@+id/UnoMenu"
+        android:layout_width="61dp"
+        android:layout_height="21dp"
+        app:srcCompat="@drawable/menu_dot"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="@+id/imageView14"
+        app:layout_constraintTop_toTopOf="@+id/UnoTopic"
+        android:layout_marginTop="0dp" />
+
+    <TextView
+        android:id="@+id/UnoTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UNO  &amp;\nFriends"
+        android:textColor="#3d3d3d"
+        android:textSize="14dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageView14"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/imageView14" />
+
+    <TextView
+        android:id="@+id/JumpyTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jumpy Witch\n- Jump on"
+        android:textColor="#3d3d3d"
+        android:textSize="14dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageView15"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/imageView15" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Spellfall -\nPuzzle"
+        android:textColor="#3d3d3d"
+        android:textSize="14dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageView16"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/SpellfallBG" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="113dp"
+        android:layout_height="122dp"
+        app:srcCompat="@drawable/display2"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/UnoBG"
+        app:layout_constraintTop_toTopOf="@+id/UnoBG"
+        android:layout_marginTop="0dp" />
+
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="113dp"
+        android:layout_height="122dp"
+        app:srcCompat="@drawable/display3"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/JumpyBG"
+        app:layout_constraintTop_toTopOf="@+id/JumpyBG"
+        android:layout_marginTop="0dp" />
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="112dp"
+        android:layout_height="123dp"
+        app:srcCompat="@drawable/display4"
+        app:layout_constraintTop_toTopOf="@+id/SpellfallBG"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/SpellfallBG" />
+
+    <ImageView
+        android:id="@+id/imageView20"
+        android:layout_width="61dp"
+        android:layout_height="21dp"
+        app:srcCompat="@drawable/menu_dot"
+        app:layout_constraintTop_toTopOf="@+id/CSR"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="@+id/RacingBG" />
+
+
+</android.support.constraint.ConstraintLayout>
