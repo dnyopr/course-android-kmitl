@@ -90,10 +90,20 @@ public class MainActivity extends AppCompatActivity
         ImageView imageView = (ImageView) findViewById(R.id.showScreen);
         imageView.setImageBitmap(bm);
 
-//        Intent intent = new Intent(Intent.ACTION_SEND);
-//        intent.setType("image/*");
+//        try {
+//            Intent intent = getPackageManager().getLaunchIntentForPackage("com.facebook.katana");
+//            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+//            startActivity(intent);
+//        } catch (NullPointerException e) {
+//            Intent intent = new Intent(Intent.ACTION_VIEW);
+//            intent.setData(Uri.parse("market://details?id=com.facebook.katana"));
+//            startActivity(intent);
+//        }
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("image/*");
 //        Uri uri =
-//        intent.putExtra(Intent.EXTRA_STREAM, imageUri);
+        intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(Ima));
 
 //        startActivity(intent);
 
