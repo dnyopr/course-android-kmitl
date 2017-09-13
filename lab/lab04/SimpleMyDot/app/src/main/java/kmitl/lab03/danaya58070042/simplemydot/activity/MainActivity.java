@@ -1,8 +1,13 @@
 package kmitl.lab03.danaya58070042.simplemydot.activity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.net.Uri;
+import android.os.Environment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -10,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import java.util.Random;
+import java.util.jar.Manifest;
 
 import kmitl.lab03.danaya58070042.simplemydot.R;
 import kmitl.lab03.danaya58070042.simplemydot.model.Dot;
@@ -78,6 +84,7 @@ public class MainActivity extends AppCompatActivity
 //        centerYTextView.setText(String.valueOf(dot.getCenterY()));
     }
 
+    /*
     public void capture(View view){
 
         View rootView = findViewById(android.R.id.content).getRootView();
@@ -90,24 +97,49 @@ public class MainActivity extends AppCompatActivity
         ImageView imageView = (ImageView) findViewById(R.id.showScreen);
         imageView.setImageBitmap(bm);
 
-//        try {
-//            Intent intent = getPackageManager().getLaunchIntentForPackage("com.facebook.katana");
-//            intent.addCategory(Intent.CATEGORY_LAUNCHER);
-//            startActivity(intent);
-//        } catch (NullPointerException e) {
-//            Intent intent = new Intent(Intent.ACTION_VIEW);
-//            intent.setData(Uri.parse("market://details?id=com.facebook.katana"));
-//            startActivity(intent);
-//        }
+        try {
+            Intent intent = getPackageManager().getLaunchIntentForPackage("com.facebook.katana");
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+            startActivity(intent);
+        } catch (NullPointerException e) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("market://details?id=com.facebook.katana"));
+            startActivity(intent);
+        }
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("image/*");
-//        Uri uri =
-        intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(Ima));
 
-//        startActivity(intent);
+        intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile());
+
+        startActivity(intent);
+    }
+    */
+
+    public void onShare(View view) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        } else{
+            String dirPath = Environment.getExternalStorageDirectory() +"/SimpleMyDot";
+            String fileName = "Screenshot.png";
 
 
+        }
+    }
+
+    public Bitmap getScreenshot(View view){
+
+        View rootView = findViewById(android.R.id.content).getRootView();
+        rootView.setDrawingCacheEnabled(true);
+        Bitmap bm = Bitmap.createBitmap(rootView.getDrawingCache());
+        rootView.setDrawingCacheEnabled(false);
+        Canvas cv = new Canvas(bm);
+
+        cv.drawColor(Color.WHITE);
+        view.draw(cv);
+
+        return bm;
     }
 
 
