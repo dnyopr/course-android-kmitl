@@ -1,5 +1,6 @@
 package kmitl.lab03.danaya58070042.simplemydot.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -11,10 +12,13 @@ import android.os.Environment;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.media.MediaBrowserCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.ButtonBarLayout;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -36,6 +40,8 @@ public class MainActivity extends AppCompatActivity
     private int g;
     private int b;
     Random random;
+    Button mButtonDialog;
+    private int WhereToShare;
 
 
     @Override
@@ -48,6 +54,7 @@ public class MainActivity extends AppCompatActivity
         random = new Random();
 
 
+
     }
 
 
@@ -57,7 +64,8 @@ public class MainActivity extends AppCompatActivity
             int r = random.nextInt(255);
             int g = random.nextInt(255);
             int b = random.nextInt(255);
-            new Dot(this, (int) event.getX(), (int) event.getY()-230, 50, r, g, b);
+
+            new Dot(this, (int) event.getX(), (int) event.getY()-250, 50, r, g, b);
         }
         return super.onTouchEvent(event);
 
@@ -129,21 +137,55 @@ public class MainActivity extends AppCompatActivity
                 != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         } else{
-            String dirPath = Environment.getExternalStorageDirectory() +"/SimpleMyDot";
-            String fileName = "Screenshot.png";
 
-            storageImage(getScreenshot(dotView), dirPath, fileName);
-            shareImage(new File(dirPath, fileName));
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setMessage("Share with ...");
+            builder.setPositiveButton("Whole Screen", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    WhereToShare = 0;
+                    String dirPath = Environment.getExternalStorageDirectory() +"/SimpleMyDot";
+                    String fileName = "Screenshot.png";
+                    storageImage(getScreenshot(dotView, WhereToShare), dirPath, fileName);
+                    shareImage(new File(dirPath, fileName));
+                }
+
+            });
+
+            builder.setNegativeButton("Just Dot", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    WhereToShare = 1;
+                    String dirPath = Environment.getExternalStorageDirectory() +"/SimpleMyDot";
+                    String fileName = "Screenshot.png";
+                    storageImage(getScreenshot(dotView, WhereToShare), dirPath, fileName);
+                    shareImage(new File(dirPath, fileName));
+                }
+            });
+            builder.show();
+
+
+
 
         }
+
     }
 
-    public Bitmap getScreenshot(View view){
+    public Bitmap getScreenshot(View view, int W){
+        Bitmap bm = null;
 
         View rootView = findViewById(android.R.id.content).getRootView();
-        rootView.setDrawingCacheEnabled(true);
-        Bitmap bm = Bitmap.createBitmap(rootView.getDrawingCache());
-        rootView.setDrawingCacheEnabled(false);
+        if(W==0){
+            rootView.setDrawingCacheEnabled(true);
+             bm = Bitmap.createBitmap(rootView.getDrawingCache());
+            rootView.setDrawingCacheEnabled(false);
+        }
+        else if(W==1){
+            dotView.setDrawingCacheEnabled(true);
+             bm = Bitmap.createBitmap(dotView.getDrawingCache());
+            dotView.setDrawingCacheEnabled(false);
+        }
+
+
         Canvas cv = new Canvas(bm);
 
         cv.drawColor(Color.WHITE);
@@ -176,7 +218,7 @@ public class MainActivity extends AppCompatActivity
         intent.putExtra(intent.EXTRA_STREAM, Uri.fromFile(file));
 
         startActivity(Intent.createChooser(intent,"Share via.."));
-    }
+}
 
 
 }
