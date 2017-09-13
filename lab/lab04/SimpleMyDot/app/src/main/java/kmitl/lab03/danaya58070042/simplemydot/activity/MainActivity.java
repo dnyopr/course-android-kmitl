@@ -147,9 +147,7 @@ public class MainActivity extends AppCompatActivity
         Canvas cv = new Canvas(bm);
 
         cv.drawColor(Color.WHITE);
-        view.draw(cv);
-        ImageView imageView = (ImageView) findViewById(R.id.showScreen);
-        imageView.setImageBitmap(bm);
+        rootView.draw(cv);
         return bm;
     }
 
