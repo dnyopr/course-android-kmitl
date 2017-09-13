@@ -6,16 +6,23 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.media.MediaBrowserCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Random;
-import java.util.jar.Manifest;
+import android.Manifest;
 
 import kmitl.lab03.danaya58070042.simplemydot.R;
 import kmitl.lab03.danaya58070042.simplemydot.model.Dot;
@@ -50,7 +57,7 @@ public class MainActivity extends AppCompatActivity
             int r = random.nextInt(255);
             int g = random.nextInt(255);
             int b = random.nextInt(255);
-            new Dot(this, (int) event.getX(), (int) event.getY() - 230, 50, r, g, b);
+            new Dot(this, (int) event.getX(), (int) event.getY()-230, 50, r, g, b);
         }
         return super.onTouchEvent(event);
 
@@ -116,6 +123,7 @@ public class MainActivity extends AppCompatActivity
     }
     */
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void onShare(View view) {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -124,6 +132,8 @@ public class MainActivity extends AppCompatActivity
             String dirPath = Environment.getExternalStorageDirectory() +"/SimpleMyDot";
             String fileName = "Screenshot.png";
 
+            storageImage(getScreenshot(dotView), dirPath, fileName);
+            shareImage(new File(dirPath, fileName));
 
         }
     }
@@ -138,8 +148,36 @@ public class MainActivity extends AppCompatActivity
 
         cv.drawColor(Color.WHITE);
         view.draw(cv);
-
+        ImageView imageView = (ImageView) findViewById(R.id.showScreen);
+        imageView.setImageBitmap(bm);
         return bm;
+    }
+
+    public void storageImage(Bitmap bitmap, String dirPath, String fileName) {
+        File dir = new File(dirPath);
+        if(!dir.exists()){
+            dir.mkdirs();
+        }
+
+        File file = new File(dirPath, fileName);
+
+        try {
+            FileOutputStream fileOut = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOut);
+            fileOut.flush();
+            fileOut.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void shareImage(File file){
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("image/*");
+        intent.putExtra(intent.EXTRA_STREAM, Uri.fromFile(file));
+
+        startActivity(Intent.createChooser(intent,"Share via.."));
     }
 
 

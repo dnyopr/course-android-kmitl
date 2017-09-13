@@ -9,8 +9,8 @@
 
     <kmitl.lab03.danaya58070042.simplemydot.view.DotView
         android:id="@+id/dotView"
-        android:layout_height="449dp"
-        android:layout_width="379dp"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="-147dp"
