@@ -1,0 +1,75 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="kmitl.lab03.danaya58070042.simplemydot.mainFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <kmitl.lab03.danaya58070042.simplemydot.view.DotView
+        android:id="@+id/dotView"
+        android:layout_height="495dp"
+        android:layout_width="0dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="8dp" />
+
+
+    <Button
+        android:id="@+id/btnRandom"
+        android:layout_width="123dp"
+        android:layout_height="48dp"
+        android:onClick="onRandomDot"
+        android:text="@string/random_dot"
+        android:background="#5CCDC9"
+        android:textColor="#eeeeee"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnClear"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="0dp" />
+
+    <Button
+        android:id="@+id/btnClear"
+        android:layout_width="127dp"
+        android:layout_height="48dp"
+        android:onClick="clearDots"
+        android:text="@string/clear"
+        android:background="#FFB173"
+        android:textColor="#eeeeee"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/btnRandom" />
+
+    <ImageView
+        android:id="@+id/showScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/btnShare"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="1dp"
+        android:background="#FC717B"
+        android:onClick="onShare"
+        android:text="share"
+        android:textColor="#eeeeee"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="@+id/btnClear"
+        android:layout_marginRight="1dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/btnClear"
+        app:layout_constraintHorizontal_bias="0.0"
+        tools:layout_constraintLeft_creator="1" />
+</android.support.constraint.ConstraintLayout>
