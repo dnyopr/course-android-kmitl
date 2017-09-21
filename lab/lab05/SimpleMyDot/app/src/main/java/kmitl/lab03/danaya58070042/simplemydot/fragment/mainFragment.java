@@ -12,6 +12,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -37,10 +39,9 @@ import kmitl.lab03.danaya58070042.simplemydot.view.DotView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class mainFragment extends Fragment implements Dots.OnDotsChangeListener, DotView.OnDotViewPressListener {
+public class mainFragment extends Fragment implements Dots.OnDotsChangeListener, DotView.OnDotViewPressListener, editFragment.EditDotFragmentListener {
 
     private DotView dotView;
-
     Button mButtonDialog;
     private int WhereToShare;
     private Dots dots;
@@ -244,7 +245,7 @@ public class mainFragment extends Fragment implements Dots.OnDotsChangeListener,
         if (dotPosition == -1) {
             Dot newDot = new Dot(x, y, 50, new Colors().getColor());
             dots.addDot(newDot);
-        } else{
+        } else {
             dots.removeBy(dotPosition);
 //            onDotViewLongPressed(x, y);
         }
@@ -258,18 +259,22 @@ public class mainFragment extends Fragment implements Dots.OnDotsChangeListener,
             dots.addDot(newDot);
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setMessage("Choose");
-            builder.setPositiveButton("Remove", new DialogInterface.OnClickListener() {
+            builder.setMessage("What you want to do?");
+            builder.setPositiveButton("Remove this dot", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     dots.removeBy(dotPosition);
                 }
 
             });
 
-            builder.setNegativeButton("Edit", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton("Edit this dot", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    initialFragment();
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .add(R.id.fragmentContainer, new editFragment().newInstance(dots.getAllDot().get(dotPosition), mainFragment.this, dotView.getWidth(), dotView.getHeight()))
+                            .addToBackStack("goEdit")
+                            .commit();
                 }
             });
             builder.show();
@@ -278,12 +283,9 @@ public class mainFragment extends Fragment implements Dots.OnDotsChangeListener,
 
     }
 
-    private void initialFragment() {
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .add(R.id.fragmentContainer, new editFragment())
-                .addToBackStack("goEdit")
-                .commit();
-    }
 
+    @Override
+    public void EditDotFinished(Dot dot) {
+            dotView.invalidate();
+    }
 }

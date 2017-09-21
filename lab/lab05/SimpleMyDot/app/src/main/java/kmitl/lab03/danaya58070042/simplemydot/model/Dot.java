@@ -2,8 +2,10 @@ package kmitl.lab03.danaya58070042.simplemydot.model;
 
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Dot {
+public class Dot implements Parcelable{
 
 
 
@@ -22,6 +24,8 @@ public class Dot {
         this.color = color;
 
     }
+
+
 
     public int getColor() { return color; }
 
@@ -49,4 +53,17 @@ public class Dot {
         this.radius = radius;
     }
 
+    public void setColor(int color) {
+        this.color = color;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
+    }
 }
