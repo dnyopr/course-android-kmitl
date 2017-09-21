@@ -1,4 +1,4 @@
-package kmitl.lab03.danaya58070042.simplemydot;
+package kmitl.lab03.danaya58070042.simplemydot.fragment;
 
 
 import android.Manifest;
@@ -14,11 +14,11 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -27,7 +27,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Random;
 
-import kmitl.lab03.danaya58070042.simplemydot.activity.MainActivity;
+import kmitl.lab03.danaya58070042.simplemydot.R;
 import kmitl.lab03.danaya58070042.simplemydot.model.Colors;
 import kmitl.lab03.danaya58070042.simplemydot.model.Dot;
 import kmitl.lab03.danaya58070042.simplemydot.model.Dots;
@@ -240,12 +240,50 @@ public class mainFragment extends Fragment implements Dots.OnDotsChangeListener,
     @Override
     public void onDotViewPressed(int x, int y) {
         int dotPosition = dots.findDot(x, y);
+
+        if (dotPosition == -1) {
+            Dot newDot = new Dot(x, y, 50, new Colors().getColor());
+            dots.addDot(newDot);
+        } else{
+            dots.removeBy(dotPosition);
+//            onDotViewLongPressed(x, y);
+        }
+    }
+
+    @Override
+    public void onDotViewLongPressed(int x, int y) {
+        final int dotPosition = dots.findDot(x, y);
         if (dotPosition == -1) {
             Dot newDot = new Dot(x, y, 50, new Colors().getColor());
             dots.addDot(newDot);
         } else {
-            dots.removeBy(dotPosition);
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("Choose");
+            builder.setPositiveButton("Remove", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dots.removeBy(dotPosition);
+                }
+
+            });
+
+            builder.setNegativeButton("Edit", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    initialFragment();
+                }
+            });
+            builder.show();
         }
+
+
+    }
+
+    private void initialFragment() {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .add(R.id.fragmentContainer, new editFragment())
+                .addToBackStack("goEdit")
+                .commit();
     }
 
 }

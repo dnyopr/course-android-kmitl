@@ -11,6 +11,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v4.graphics.PaintCompat;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -31,6 +32,25 @@ public class DotView extends View{
     private Paint paint;
     private Dots allDot;
 
+    private GestureDetector gestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return true;
+        }
+
+        @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+            DotView.this.onDotViewPressListener.onDotViewPressed((int) e.getX(), (int) e.getY());
+            return super.onSingleTapUp(e);
+        }
+
+        @Override
+        public void onLongPress(MotionEvent e) {
+            DotView.this.onDotViewPressListener.onDotViewLongPressed((int) e.getX(), (int) e.getY());
+        }
+
+    });
+
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -43,17 +63,12 @@ public class DotView extends View{
                         dot.getCenterY(), 50, paint);
             }
         }
-//        super.onDraw(canvas);
-//        for (Dot d : dots) {
-//            paint.setColor(d.getColor());
-////                paint.setColor(Color.RED);
-//            canvas.drawCircle(d.getCenterX(), d.getCenterY(), 50, paint);
-//        }
     }
 
 
     public interface OnDotViewPressListener{
         void onDotViewPressed(int x, int y);
+        void onDotViewLongPressed(int x, int y);
     }
 
     private OnDotViewPressListener onDotViewPressListener;
@@ -66,15 +81,7 @@ public class DotView extends View{
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                this.onDotViewPressListener
-                        .onDotViewPressed(
-                                (int)event.getX(),
-                                (int)event.getY());
-                return true;
-        }
-        return false;
+        return gestureDetector.onTouchEvent(event);
 
     }
 
