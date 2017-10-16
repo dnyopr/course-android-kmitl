@@ -1,4 +1,4 @@
-package com.kmitl.danaya58070042.lazyinstagram.api;
+package com.kmitl.danaya58070042.MyLazyinstagram.api;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

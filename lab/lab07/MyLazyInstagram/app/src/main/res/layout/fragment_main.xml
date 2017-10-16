@@ -1,0 +1,60 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.kmitl.danaya58070042.lazyinstagram.com.kmitl.danaya58070042.Mylazyinstagram.fragment.MainFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fae6e6"
+        >
+
+        <Button
+            android:id="@+id/acc_android"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:text="android"
+            android:textSize="20dp"
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_editor_absoluteY="81dp" />
+
+        <Button
+            android:id="@+id/acc_nature"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:text="natural"
+            android:textSize="20dp"
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/acc_android"
+             />
+
+        <Button
+
+            android:id="@+id/acc_cartoon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:text="cartoon"
+            android:textSize="20dp"
+
+            app:layout_constraintTop_toBottomOf="@+id/acc_nature"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+
+</FrameLayout>
