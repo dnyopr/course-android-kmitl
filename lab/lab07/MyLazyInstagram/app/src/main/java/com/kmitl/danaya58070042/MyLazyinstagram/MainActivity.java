@@ -1,13 +1,21 @@
 package com.kmitl.danaya58070042.MyLazyinstagram;
 
 import android.content.DialogInterface;
+import android.database.CharArrayBuffer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -15,7 +23,6 @@ import com.kmitl.danaya58070042.MyLazyinstagram.adapter.PostAdapter;
 import com.kmitl.danaya58070042.lazyinstagram.R;
 import com.kmitl.danaya58070042.MyLazyinstagram.api.LazyInstagramAPI;
 import com.kmitl.danaya58070042.MyLazyinstagram.api.UserProfile;
-import com.kmitl.danaya58070042.MyLazyinstagram.fragment.MainFragment;
 
 
 import okhttp3.OkHttpClient;
@@ -25,10 +32,15 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInterfaceListener {
+public class MainActivity extends AppCompatActivity{
 
 
     private String username = "android";
+    private ImageButton btn_grid;
+    private ImageButton btn_list;
+    private Button btn_follow;
+//    private Spinner spinnerAccount;
+//    private ArrayAdapter<CharSequence> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +48,6 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         setContentView(R.layout.activity_main);
 
         getUserProfile(username);
-
-
 //        Button switchUserBtn = (Button) findViewById(R.id.switch_user_btn);
 //
 //        switchUserBtn.setOnClickListener(new View.OnClickListener(){
@@ -50,6 +60,25 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
 //                        .commit();
 //            }
 //        });
+
+//        spinnerAccount = (Spinner) findViewById(R.id.spinner_acc_choose);
+//        adapter = ArrayAdapter.createFromResource(this, R.array.account,R.layout.support_simple_spinner_dropdown_item);
+//        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+//
+//        spinnerAccount.setAdapter(adapter);
+//        spinnerAccount.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                getUserProfile((String) parent.getItemAtPosition(position));
+//            }
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//            }
+//        });
+
+        btn_grid = (ImageButton) findViewById(R.id.btn_grid);
+        btn_list = (ImageButton) findViewById(R.id.btn_list);
+        btn_follow = (Button) findViewById(R.id.btn_follow);
 
     }
 
@@ -108,21 +137,37 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         });
         builder.show();
 
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        fragmentManager.beginTransaction()
-//                .add(R.id.choose_acc_fragment, new MainFragment())
-//                .addToBackStack("choose an acc")
-//                .commit();
-
+////        FragmentManager fragmentManager = getSupportFragmentManager();
+////        fragmentManager.beginTransaction()
+////                .add(R.id.choose_acc_fragment, new MainFragment())
+////                .addToBackStack("choose an acc")
+////                .commit();
+//
     }
 
+
     public void showProfile(Call<UserProfile> call, Response<UserProfile> response) {
-        UserProfile userProfile = response.body();
+        final UserProfile userProfile = response.body();
 
         PostAdapter postAdapter = new PostAdapter(this, userProfile.getPosts());
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
+        recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 3));
+
+        btn_grid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 3));
+            }
+        });
+        btn_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+            }
+        });
+
+
+
         recyclerView.setAdapter(postAdapter);
 
         TextView textName = (TextView) findViewById(R.id.textName);
@@ -133,14 +178,33 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
 
         TextView post = (TextView) findViewById(R.id.post_amount);
         post.setText(String.valueOf(userProfile.getPost()));
+
         TextView following = (TextView) findViewById(R.id.following_amount);
         following.setText(String.valueOf(userProfile.getFollowing()));
+
         TextView follower = (TextView) findViewById(R.id.follower_amount);
         follower.setText(String.valueOf(userProfile.getFollower()));
+
         TextView bio = (TextView) findViewById(R.id.bio);
         bio.setText(userProfile.getBio());
+
+
+        if(userProfile.isFollow()==true){
+            btn_follow.setText("following");
+        }
+        else{
+            btn_follow.setText("follow");
+        }
 
     }
 
 
+    public void onFollow(View view) {
+        if(String.valueOf(btn_follow.getText()).equals("follow")){
+            btn_follow.setText("following");
+        }
+        else{
+            btn_follow.setText("follow");
+        }
+    }
 }
