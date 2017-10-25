@@ -49,7 +49,7 @@ public class MainActivityTest {
 
 
     @Test
-    public void mainActivityTest2() {
+    public void mainActivityTest1() {
         SystemClock.sleep(1500);
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.buttonAdded), withText("ADDED"), isDisplayed()));
@@ -70,7 +70,7 @@ public class MainActivityTest {
 
 
     @Test
-    public void mainActivityTest3() {
+    public void mainActivityTest2() {
 
         SystemClock.sleep(1500);
 
@@ -98,7 +98,7 @@ public class MainActivityTest {
 
 
     @Test
-    public void mainActivityTest4() {
+    public void mainActivityTest3() {
 
         SystemClock.sleep(1500);
 
@@ -112,7 +112,7 @@ public class MainActivityTest {
 
 
     @Test
-    public void mainActivityTest5() {
+    public void mainActivityTest4() {
         SystemClock.sleep(1500);
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.editTExtName), isDisplayed()));
@@ -134,7 +134,7 @@ public class MainActivityTest {
 
 
     @Test
-    public void mainActivityTest6() {
+    public void mainActivityTest5() {
         SystemClock.sleep(1500);
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.editTExtName), isDisplayed()));
@@ -159,7 +159,7 @@ public class MainActivityTest {
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void mainActivityTest7() {
+    public void mainActivityTest6() {
         SystemClock.sleep(1500);
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.editTExtName), isDisplayed()));
@@ -182,7 +182,7 @@ public class MainActivityTest {
     }
 
     @Test
-    public void mainActivityTest8() {
+    public void mainActivityTest7() {
         SystemClock.sleep(1500);
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.editTExtName), isDisplayed()));
@@ -204,7 +204,7 @@ public class MainActivityTest {
     }
 
     @Test
-    public void mainActivityTest9() {
+    public void mainActivityTest8() {
         SystemClock.sleep(1500);
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.editTExtName), isDisplayed()));
@@ -224,5 +224,26 @@ public class MainActivityTest {
         SystemClock.sleep(1500);
     }
 
+
+    @Test
+    public void mainActivityTest9() {
+        SystemClock.sleep(1500);
+        ViewInteraction appCompatEditText = onView(
+                allOf(withId(R.id.editTExtName), isDisplayed()));
+        appCompatEditText.perform(replaceText("Prayoch"), closeSoftKeyboard());
+        SystemClock.sleep(1500);
+        ViewInteraction appCompatEditText2 = onView(
+                allOf(withId(R.id.editTextAge), isDisplayed()));
+        appCompatEditText2.perform(replaceText("50"), closeSoftKeyboard());
+        SystemClock.sleep(1500);
+        ViewInteraction appCompatButton = onView(
+                allOf(withId(R.id.buttonAdded), withText("ADDED"), isDisplayed()));
+        appCompatButton.perform(click());
+        SystemClock.sleep(1500);
+        ViewInteraction appCompatButton2 = onView(
+                allOf(withId(R.id.buttonGotoList), withText("GO TO LIST"), isDisplayed()));
+        appCompatButton2.perform(click());
+        SystemClock.sleep(1500);
+    }
 
 }
