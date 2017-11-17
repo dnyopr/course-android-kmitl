@@ -57,12 +57,7 @@ public class MainActivityTest {
 
         SystemClock.sleep(1500);
 
-        ViewInteraction appCompatButton3 = onView(
-                allOf(withId(android.R.id.button1), withText("OK"),
-                        withParent(allOf(withClassName(is("com.android.internal.widget.ButtonBarLayout")),
-                                withParent(withClassName(is("android.widget.LinearLayout"))))),
-                        isDisplayed()));
-        appCompatButton3.perform(click());
+        ViewInteraction appCompatButton3 = onView(allOf(withId(android.R.id.button1), withText("OK"))).perform(click());
 
         SystemClock.sleep(1500);
 
@@ -87,11 +82,7 @@ public class MainActivityTest {
         SystemClock.sleep(1500);
 
         ViewInteraction appCompatButton2 = onView(
-                allOf(withId(android.R.id.button1), withText("OK"),
-                        withParent(allOf(withClassName(is("com.android.internal.widget.ButtonBarLayout")),
-                                withParent(withClassName(is("android.widget.LinearLayout"))))),
-                        isDisplayed()));
-        appCompatButton2.perform(click());
+                allOf(withId(android.R.id.button1), withText("OK"))).perform(click());
 
         SystemClock.sleep(1500);
     }
@@ -123,11 +114,7 @@ public class MainActivityTest {
         appCompatButton.perform(click());
         SystemClock.sleep(1500);
         ViewInteraction appCompatButton2 = onView(
-                allOf(withId(android.R.id.button1), withText("OK"),
-                        withParent(allOf(withClassName(is("com.android.internal.widget.ButtonBarLayout")),
-                                withParent(withClassName(is("android.widget.LinearLayout"))))),
-                        isDisplayed()));
-        appCompatButton2.perform(click());
+                allOf(withId(android.R.id.button1), withText("OK"))).perform(click());
         SystemClock.sleep(1500);
 
     }
